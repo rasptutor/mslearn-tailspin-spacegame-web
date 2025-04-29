@@ -19,10 +19,16 @@ steps:
     packageType: sdk
     version: '6.x'
 
+- task: NodeTool@0
+  displayName: 'Use Node.js 18.x'
+  inputs:
+    versionSpec: '18.x'
+
 - task: Npm@1
   displayName: 'Run npm install'
   inputs:
-    verbose: false
+    command: 'install'
+    verbose: true
 
 - script: 'npx sass Tailspin.SpaceGame.Web/wwwroot:Tailspin.SpaceGame.Web/wwwroot'
   displayName: 'Compile Sass assets'
@@ -46,4 +52,5 @@ steps:
     command: 'build'
     arguments: '--no-restore --configuration Release'
     projects: '**/*.csproj'
+
 
